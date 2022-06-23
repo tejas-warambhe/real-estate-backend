@@ -5,6 +5,7 @@ const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const connection = require('./db');
 const user = require('./routes/user');
+const blog = require('./routes/blog');
 const mongoose = require('mongoose');
 const Grid = require("gridfs-stream");
 
@@ -27,6 +28,7 @@ app.use(express.json());
 
 //specifying routes
 app.use('/user', user);
+app.use('/admin/blog', blog);
 
 
 // media routes
