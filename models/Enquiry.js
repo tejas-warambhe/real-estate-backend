@@ -19,6 +19,11 @@ const EnquirySchema = new Schema({
         type: String,
         required: true,
     },
+    scheduled_time: {
+        type: String,
+        required: true
+    },
+
     date: {
         type: Date,
         default: Date.now

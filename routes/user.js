@@ -20,14 +20,15 @@ router.post("/upload", upload.single("file"), async(req, res) => {
 
 
 router.post('/enquiry', async(req, res) => {
-    const { name, phone, email, propert_name } = req.body;
+    const { name, phone, email, propert_name, scheduled_time } = req.body;
     try {
 
         let enquiry = await Enquiry.create({
             name: name,
             phone: phone,
             email: email,
-            property_details: propert_name
+            property_name: propert_name,
+            scheduled_time: scheduled_time
         });
 
         //send enquiry on email using nodemailer
