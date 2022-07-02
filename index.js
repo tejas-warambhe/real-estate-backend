@@ -8,8 +8,12 @@ const user = require('./routes/user');
 const blog = require('./routes/blog');
 const mongoose = require('mongoose');
 const Grid = require("gridfs-stream");
-
-//connect to database
+const corsOptions = {
+        origin: '*',
+        credentials: true, //access-control-allow-credentials:true
+        optionSuccessStatus: 200,
+    }
+    //connect to database
 let gfs, gridfsBucket;
 connection();
 
@@ -23,7 +27,8 @@ conn.once("open", function() {
 });
 
 //middlewares
-app.use(cors());
+// app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //specifying routes
