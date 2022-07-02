@@ -19,6 +19,24 @@ router.get('/enquiries', async(req, res) => {
     }
 })
 
+router.delete('/enquiry/:id', async(req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        let enquiry = await Enquiry.findByIdAndDelete({ _id: id });
+        // const response = await enquiry.destroy({
+        //     where: {
+        //         _id: id
+        //     }
+        // });
+
+        res.status(200).json({
+            success: enquiry
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+})
 
 
 router.post('/blog/create', upload.single('file'), async(req, res) => {
