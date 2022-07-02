@@ -15,18 +15,16 @@ const EnquirySchema = new Schema({
         type: String,
         required: true,
     },
-    property_details: {
+    property_name: {
         type: String,
         required: true,
     },
-    price_range: {
-        type: Number,
-        required: true,
-    },
-
-    other_info: {
-        type: String
+    date: {
+        type: Date,
+        default: Date.now
     }
+
+
 });
 
 const Enquiry = mongoose.model('enquiry', EnquirySchema);
