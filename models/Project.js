@@ -4,42 +4,21 @@ const { Schema } = mongoose;
 const ProjectSchema = new Schema({
     property_thumbnail: {
 
-        type: String
-    },
-    description: {
-
-        type: String
-    },
-    type_of_property: {
-
-        type: String
-    },
-    area: {
-
-        type: String
-    },
-    floor: {
-
-        type: String
-    },
-    pricing: {
-
-        type: String
-    },
-
-    floor_plan_array: {
-
         type: Array
     },
-    isometric_view_array: {
+    property_name: {
 
-        type: Array
+        type: String
+    },
+    property_details: {
+
+        type: String
     },
     maharera_no: {
 
         type: String
     },
-    property_vide: {
+    property_video: {
 
         type: String
     },
@@ -47,12 +26,108 @@ const ProjectSchema = new Schema({
 
         type: String
     },
-    gallery_array: {
+    type1: {
 
         type: String
+    },
+    type2: {
+
+        type: String
+    },
+    type3: {
+
+        type: String
+    },
+    type4: {
+
+        type: String
+    },
+    price1: {
+
+        type: String
+    },
+    price2: {
+
+        type: String
+    },
+    price3: {
+
+        type: String
+    },
+    price4: {
+
+        type: String
+    },
+    area1: {
+
+        type: String
+    },
+    area2: {
+
+        type: String
+    },
+    area3: {
+
+        type: String
+    },
+    area4: {
+
+        type: String
+    },
+    floor_no1: {
+
+        type: String
+    },
+    floor_no2: {
+
+        type: String
+    },
+    floor_no3: {
+
+        type: String
+    },
+    floor_no4: {
+
+        type: String
+    },
+    isometric1: {
+
+        type: Array
+    },
+    isometric2: {
+
+        type: Array
+    },
+    isometric3: {
+
+        type: Array
+    },
+    isometric4: {
+
+        type: Array
+    },
+    floor1: {
+
+        type: Array
+    },
+    floor2: {
+
+        type: Array
+    },
+    floor3: {
+
+        type: Array
+    },
+    floor4: {
+
+        type: Array
+    },
+    gallery_array: {
+
+        type: Array
     }
 });
 
 const Project = mongoose.model('project', ProjectSchema);
 
-module.exports = Project
+module.exports = Project;

@@ -3,6 +3,7 @@ const router = express.Router();
 const Blog = require('../models/Blog');
 const Enquiry = require('../models/Enquiry');
 const multer = require("multer");
+const Project = require('../models/Project');
 
 var storage = multer.diskStorage({
 
@@ -71,11 +72,98 @@ router.delete('/enquiry/:id', async(req, res) => {
 
         res.status(200).json({
             success: enquiry
-        })
+        });
     } catch (err) {
         console.log(err.message);
     }
 })
+
+router.get('/products', async(req, res) => {
+
+    try {
+        let products = await Project.find({});
+        res.status(201).json({
+            success: true,
+            data: products
+        })
+
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+//get single product
+router.get('/product/from/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        let product = await Project.findOne({ _id: id });
+
+        return res.status(201).json({
+            success: true,
+            data: product
+        });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+//Create Project 
+router.post('/product', async(req, res) => {
+
+    try {
+
+        let Product = await Project.create(req.body);
+        res
+            .status(201)
+            .json({
+                status: true,
+                data: Product
+            });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
+//delete product by id
+router.delete('/product/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        let DeletedProduct = await Project.findByIdAndDelete({ _id: id });
+
+        res.status(201).json({
+            status: true,
+            data: DeletedProduct
+        });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+//edit product by id
+router.put('/product/update/:id', async(req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        const filter = { _id: id };
+        let updatedProject = await Project.findOneAndUpdate(filter, req.body);
+        res.status(201).json({
+            success: true,
+            updatedProject: updatedProject
+        })
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+
+
+
+
+
 
 
 // router.post('/blog/create', upload.single('file'), async(req, res) => {

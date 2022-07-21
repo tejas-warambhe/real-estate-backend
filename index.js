@@ -21,7 +21,7 @@ connection();
 
 //middlewares
 // app.use(cors());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use('/public/images', express.static(__dirname + '/public/images/'));
 
