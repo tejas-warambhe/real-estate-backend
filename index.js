@@ -20,8 +20,8 @@ connection();
 
 
 //middlewares
-// app.use(cors());
 app.use(cors());
+// app.use(cors({ origin: process.env.REMOTE_CLIENT_APP, credentials: true }));
 app.use(express.json());
 app.use('/public/images', express.static(__dirname + '/public/images/'));
 

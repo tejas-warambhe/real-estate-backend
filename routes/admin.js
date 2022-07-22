@@ -148,10 +148,94 @@ router.put('/product/update/:id', async(req, res) => {
     console.log(id);
     try {
         const filter = { _id: id };
-        let updatedProject = await Project.findOneAndUpdate(filter, req.body);
+        let updatedProject = await Blog.findOneAndUpdate(filter, req.body);
         res.status(201).json({
             success: true,
             updatedProject: updatedProject
+        })
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+
+
+//Blog Apis Start
+router.get('/blogs', async(req, res) => {
+
+    try {
+        let blogs = await Blog.find({});
+        res.status(201).json({
+            success: true,
+            data: blogs
+        })
+
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+//get single product
+router.get('/blog/from/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        let blog = await Blog.findOne({ _id: id });
+
+        return res.status(201).json({
+            success: true,
+            data: blog
+        });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+//Create Project 
+router.post('/blog', async(req, res) => {
+
+    try {
+
+        let blog = await Blog.create(req.body);
+        res
+            .status(201)
+            .json({
+                status: true,
+                data: blog
+            });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
+//delete product by id
+router.delete('/blog/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        let DeletedBlog = await Blog.findByIdAndDelete({ _id: id });
+
+        res.status(201).json({
+            status: true,
+            data: DeletedBlog
+        });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
+
+//edit product by id
+router.put('/blog/update/:id', async(req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        const filter = { _id: id };
+        let updatedBlog = await Blog.findOneAndUpdate(filter, req.body);
+        res.status(201).json({
+            success: true,
+            updatedBlog: updatedBlog
         })
 
     } catch (err) {
