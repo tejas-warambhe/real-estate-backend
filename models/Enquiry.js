@@ -19,7 +19,7 @@ const EnquirySchema = new Schema({
         type: String,
         required: true,
     },
-    scheduled_time: {
+    [`datetime-local`]: {
         type: String,
         required: true
     },
