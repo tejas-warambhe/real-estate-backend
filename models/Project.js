@@ -10,6 +10,9 @@ const ProjectSchema = new Schema({
 
         type: String
     },
+    property_address: {
+        type: String
+    },
     property_details: {
 
         type: String
@@ -125,6 +128,9 @@ const ProjectSchema = new Schema({
     gallery_array: {
 
         type: Array
+    },
+    brochure_url: {
+        type: String
     }
 });
 

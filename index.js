@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 const connection = require('./db');
 const user = require('./routes/user');
 const admin = require('./routes/admin');
-const mongoose = require('mongoose');
+const auth = require('./routes/auth');
 
 const corsOptions = {
         origin: '*',
@@ -28,7 +28,7 @@ app.use('/public/images', express.static(__dirname + '/public/images/'));
 //specifying routes
 app.use('/user', user);
 app.use('/admin', admin);
-
+app.use('/auth', auth)
 
 
 

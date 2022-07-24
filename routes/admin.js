@@ -31,7 +31,7 @@ router.post('/single_img', upload.single('file'), (req, res) => {
     }
 })
 
-router.post('/multiple_img', upload.array('files', 20), (req, res) => {
+router.post('/multiple_img', upload.array('files', 1000), (req, res) => {
     try {
         console.log(req.files);
         return res.status(201).send(req.files);
@@ -148,7 +148,8 @@ router.put('/product/update/:id', async(req, res) => {
     console.log(id);
     try {
         const filter = { _id: id };
-        let updatedProject = await Blog.findOneAndUpdate(filter, req.body);
+        let updatedProject = await Project.findOneAndUpdate(filter, req.body);
+        console.log(updatedProject);
         res.status(201).json({
             success: true,
             updatedProject: updatedProject
