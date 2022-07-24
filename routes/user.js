@@ -20,17 +20,11 @@ router.get('/ping', (req, res) => {
 
 
 router.post('/enquiry', async(req, res) => {
-    const { name, phone, email, property_name, scheduled_time } = req.body;
+    // const { name, phone, email, property_name, scheduled_time, additional_info, type_of_enquiry } = req.body;
     try {
-
-        let enquiry = await Enquiry.create({
-            name: name,
-            phone: phone,
-            email: email,
-            property_name: property_name,
-            scheduled_time: scheduled_time
-        });
-
+        console.log(req.body);
+        let enquiry = await Enquiry.create(req.body);
+        console.log(enquiry);
         //send enquiry on email using nodemailer
 
         res.status(201).send({

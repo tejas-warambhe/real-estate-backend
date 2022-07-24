@@ -5,23 +5,23 @@ const { Schema } = mongoose;
 const EnquirySchema = new Schema({
     name: {
         type: String,
-        required: true
+        // required: true
     },
     phone: {
         type: Number,
-        required: true,
+        // required: true,
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
     },
     property_name: {
         type: String,
-        required: true,
+        // required: true,
     },
     scheduled_time: {
         type: String,
-        required: true
+        // required: true
     },
     type_of_enquiry: {
         type: String,
