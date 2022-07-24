@@ -23,6 +23,9 @@ const EnquirySchema = new Schema({
         type: String,
         required: true
     },
+    type_of_enquiry: {
+        type: String,
+    },
 
     date: {
         type: Date,
