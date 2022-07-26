@@ -177,7 +177,7 @@ router.get('/blogs', async(req, res) => {
     }
 })
 
-//get single product
+//get single blog
 router.get('/blog/from/:id', async(req, res) => {
     const { id } = req.params;
     try {
@@ -193,7 +193,7 @@ router.get('/blog/from/:id', async(req, res) => {
     }
 })
 
-//Create Project 
+//Create Blog 
 router.post('/blog', async(req, res) => {
 
     try {
@@ -211,7 +211,7 @@ router.post('/blog', async(req, res) => {
     }
 });
 
-//delete product by id
+//delete blog by id
 router.delete('/blog/:id', async(req, res) => {
     const { id } = req.params;
     try {
@@ -227,7 +227,7 @@ router.delete('/blog/:id', async(req, res) => {
     }
 })
 
-//edit product by id
+//edit blog by id
 router.put('/blog/update/:id', async(req, res) => {
     const { id } = req.params;
     console.log(id);

@@ -10,13 +10,13 @@ const BlogSchema = new Schema({
         type: String,
         required: true,
     },
-    image_url: {
-        type: String
-    },
-    blog_content: {
-        type: String,
-        required: true
-    },
+    // image_url: {
+    //     type: String
+    // },
+    // blog_content: {
+    //     type: String,
+    //     required: true
+    // },
     tags: {
         type: Array
     },
@@ -25,7 +25,16 @@ const BlogSchema = new Schema({
         default: 0
     },
     comments: {
-        type: Array
+        type: Array,
+        default: []
+    },
+    blog_thumbnail: {
+
+        type: String
+    },
+    blog_content: {
+
+        type: String
     },
     date: {
         type: Date,
