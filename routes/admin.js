@@ -4,6 +4,7 @@ const Blog = require('../models/Blog');
 const Enquiry = require('../models/Enquiry');
 const multer = require("multer");
 const Project = require('../models/Project');
+const Subscriptions = require('../models/Subscriptions');
 
 var storage = multer.diskStorage({
 
@@ -245,7 +246,20 @@ router.put('/blog/update/:id', async(req, res) => {
 })
 
 
+//get all subscriptions
+router.get('/subscriptions', async(req, res) => {
+    try {
+        const subscriptions = await Subscriptions.find({});
 
+        return res.status(201).json({
+            success: true,
+            data: subscriptions
+        })
+
+    } catch (err) {
+        console.log(err.message);
+    }
+})
 
 
 
