@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Enquiry = require('../models/Enquiry');
 // const upload = require('../middlewares/upload');
-
+const Subscriptions = require('../models/Subscriptions');
 
 
 router.get('/ping', (req, res) => {
@@ -29,6 +29,20 @@ router.post('/enquiry', async(req, res) => {
 
         res.status(201).send({
             success: enquiry
+        });
+
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
+router.post('/subscribe', async(req, res) => {
+    try {
+        let subscribed = await Subscriptions.create(req.body);
+        console.log(subscribed);
+        return res.status(201).json({
+            success: true,
+            data: subscribed
         });
 
     } catch (err) {
