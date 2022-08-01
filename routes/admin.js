@@ -32,7 +32,7 @@ router.post('/single_img', upload.single('file'), (req, res) => {
     }
 })
 
-router.post('/multiple_img', upload.array('files', 1000), (req, res) => {
+router.post('/multiple_img', upload.array('files', 50), (req, res) => {
     try {
         console.log(req.files);
         return res.status(201).send(req.files);

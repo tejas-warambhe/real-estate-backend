@@ -6,6 +6,10 @@ const BlogSchema = new Schema({
         type: String,
         required: true
     },
+
+    subheading: {
+        type: String,
+    },
     author: {
         type: String,
         required: true,
