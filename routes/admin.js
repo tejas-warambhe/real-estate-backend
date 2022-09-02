@@ -5,16 +5,58 @@ const Enquiry = require('../models/Enquiry');
 const multer = require("multer");
 const Project = require('../models/Project');
 const Subscriptions = require('../models/Subscriptions');
+const cloudinary = require("cloudinary").v2;
+// const bodyParser = require("body-parser");
+const fs = require("fs");
 
 var storage = multer.diskStorage({
 
     destination: "./public/images",
     filename: function(req, file, cb) {
         let url = file.originalname.replace(/\ /g, "");
+        // let url = file.originalname;
         cb(null, Date.now() + '-' + url);
     }
 })
 
+cloudinary.config({
+    cloud_name: "rushirrj",
+    api_key: "847177992113957",
+    api_secret: "FdNGOwSBtpuVmXQRdvj3qS0dkDw",
+});
+
+async function uploadToCloudinary(locaFilePath, filename) {
+
+    // locaFilePath: path of image which was just
+    // uploaded to "uploads" folder
+
+    var mainFolderName = "public/images/";
+    // filePathOnCloudinary: path of image we want
+    // to set when it is uploaded to cloudinary
+    var filePathOnCloudinary = mainFolderName + filename;
+
+    return cloudinary.uploader
+        .upload(locaFilePath, { public_id: filePathOnCloudinary })
+        .then((result) => {
+
+            // Image has been successfully uploaded on
+            // cloudinary So we dont need local image 
+            // file anymore
+            // Remove file from local uploads folder
+            fs.unlinkSync(locaFilePath);
+
+            return {
+                message: "Success",
+                url: result.url,
+            };
+        })
+        .catch((error) => {
+            console.log(error);
+            // Remove file from local uploads folder
+            fs.unlinkSync(locaFilePath);
+            return { message: "Fail" };
+        });
+}
 
 // const uploadMultiple = multer({ storage, limits: { fieldSize: 25 * 1024 * 1024 } });
 const upload = multer({ storage: storage });
@@ -32,15 +74,30 @@ router.post('/single_img', upload.single('file'), (req, res) => {
     }
 })
 
-router.post('/multiple_img', upload.array('files', 50), (req, res) => {
+router.post('/multiple_img', upload.array('files', 12), async(req, res) => {
     try {
         console.log(req.files);
-        return res.status(201).send(req.files);
+
+        var imageUrlList = [];
+
+        for (var i = 0; i < req.files.length; i++) {
+            var locaFilePath = req.files[i].path;
+
+            // Upload the local image to Cloudinary
+            // and get image url as response
+            var result = await uploadToCloudinary(locaFilePath, req.files[i].filename);
+            imageUrlList.push(result.url);
+        }
+
+        console.log(imageUrlList);
+
+
+
+        return res.status(201).send(imageUrlList);
     } catch (err) {
         console.log(err.message);
     }
 })
-
 
 
 
